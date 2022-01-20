@@ -31,7 +31,13 @@ class MyPage extends StatelessWidget {
             print('Text Button is pressed.');
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Hello World !'),
+                content: Text(
+                  'Hello World !',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white),
+                ),
+                backgroundColor: Colors.teal,
+                duration: Duration(milliseconds: 1000),
               ),
             );
           },
