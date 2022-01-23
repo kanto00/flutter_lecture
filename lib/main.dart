@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 void main() => runApp(MyApp());
 
@@ -8,8 +8,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Snack Bar',
-      theme: ThemeData(primarySwatch: Colors.red),
+      title: 'Myapp',
+      theme: ThemeData(primaryColor: Colors.blue),
       home: MyPage(),
     );
   }
@@ -21,34 +21,16 @@ class MyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Snack bar'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: TextButton(
-          onPressed: () {
-            print('Text Button is pressed.');
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  'Hello World !',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white),
-                ),
-                backgroundColor: Colors.teal,
-                duration: Duration(milliseconds: 1000),
-              ),
-            );
-          },
-          child: Text(
-            'Show me',
-            style: TextStyle(fontSize: 18.0),
-          ),
-          style: TextButton.styleFrom(
-            primary: Colors.white,
-            backgroundColor: Colors.redAccent,
-          ),
+      backgroundColor: Colors.blue,
+      body: SafeArea(
+        child: Container(
+          // 컨테이너 > 마진 > 패딩 순으로 좁혀감
+          color: Colors.red,
+          width: 100,
+          height: 100,
+          margin: EdgeInsets.symmetric(vertical: 80, horizontal: 20),
+          padding: EdgeInsets.all(20),
+          child: Text('Hello'),
         ),
       ),
     );
