@@ -10,29 +10,51 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Myapp',
       theme: ThemeData(primaryColor: Colors.blue),
-      home: MyPage(),
+      home: FirstPage(),
     );
   }
 }
 
-class MyPage extends StatelessWidget {
-  const MyPage({Key? key}) : super(key: key);
+class FirstPage extends StatelessWidget {
+  const FirstPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
-      body: SafeArea(
-        child: Container(
-          // 컨테이너 > 마진 > 패딩 순으로 좁혀감
-          color: Colors.red,
-          width: 100,
-          height: 100,
-          margin: EdgeInsets.symmetric(vertical: 80, horizontal: 20),
-          padding: EdgeInsets.all(20),
-          child: Text('Hello'),
+        appBar: AppBar(
+          title: Text('First Page'),
         ),
-      ),
-    );
+        body: Center(
+          child: TextButton(
+            child: Text('Go to the Second Page'),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SecondPage()));
+            },
+          ),
+        ));
+  }
+}
+
+//  route는 반드시 material widget 아레에 child 로 생성되어야 한다.
+// 따라서 Second Page는 Material.push로 fisrt page 위에 쌓여져야함
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext ctx) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Second Page'),
+        ),
+        body: Center(
+          child: TextButton(
+            child: Text('Go to the First Page'),
+            onPressed: () {
+              Navigator.pop(ctx); // 가장 최근 저장된 것을 삭제
+            },
+          ),
+        ));
   }
 }
