@@ -11,115 +11,102 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: MyPage(),
+      home: MyButton(),
     );
   }
 }
 
-class MyPage extends StatelessWidget {
-  const MyPage({Key? key}) : super(key: key);
+class MyButton extends StatelessWidget {
+  const MyButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Scaffold Messenger'),
-      ),
-      body: HomeBody(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.thumb_up),
-        onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text('Like a new Snack bar!'),
-            duration: Duration(seconds: 5),
-            action: SnackBarAction(
-              label: 'Undo',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ThirdPage()),
-                );
-              },
-            ),
-          ));
-        },
-      ),
-    );
-  }
-}
-
-class HomeBody extends StatelessWidget {
-  const HomeBody({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: ElevatedButton(
-      child: Text('Go to the second page'),
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SecondPage()),
-        );
-      },
-    ));
-  }
-}
-
-class SecondPage extends StatelessWidget {
-  const SecondPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Second Page'),
-      ),
-      body: Center(
-        child: Text(
-          '좋아요가 추가되었습니다.',
-          style: TextStyle(fontSize: 20.0, color: Colors.redAccent),
-        ),
-      ),
-    );
-  }
-}
-
-class ThirdPage extends StatelessWidget {
-  const ThirdPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ScaffoldMessenger(
-      child: Scaffold(
         appBar: AppBar(
-          title: Text('Second Page'),
+          title: Text('Buttons'),
+          centerTitle: true,
         ),
-        body: Builder(builder: (context) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '좋아요가 취소하시겠습니까?',
-                  style: TextStyle(fontSize: 20.0, color: Colors.redAccent),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () {},
+                //print('Text button');
+                //},
+                onLongPress: () {
+                  print('text button');
+                },
+                child: Text(
+                  'TextButton',
+                  style: TextStyle(fontSize: 20.0),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('좋아요가 취소되었습니다'),
-                        duration: Duration(seconds: 3),
-                      ),
-                    );
-                  },
-                  child: Text('취소하기'),
-                )
-              ],
-            ),
-          );
-        }),
-      ),
-    );
+                style: TextButton.styleFrom(
+                  primary: Colors.red,
+                  //backgroundColor: Colors.blue
+                  //
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  print('Elevated button');
+                },
+                child: Text('Elevated button'),
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.orangeAccent,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    elevation: 0.0),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  print('Outlined Button');
+                },
+                child: Text('Outlined button'),
+                style: OutlinedButton.styleFrom(
+                    primary: Colors.green,
+                    side: BorderSide(
+                      color: Colors.black87,
+                      width: 2.0,
+                    )),
+              ),
+              TextButton.icon(
+                onPressed: () {
+                  print('Icon button');
+                },
+                icon: Icon(
+                  Icons.home,
+                  size: 30.0,
+                  color: Colors.black87,
+                ),
+                label: Text('Go to home'),
+                style: TextButton.styleFrom(primary: Colors.purple),
+              ),
+              ElevatedButton.icon(
+                onPressed: () {
+                  print('Icon button');
+                },
+                icon: Icon(
+                  Icons.home,
+                  size: 20.0,
+                  color: Colors.white,
+                ),
+                label: Text('Go to home'),
+                style: ElevatedButton.styleFrom(primary: Colors.black),
+              ),
+              OutlinedButton.icon(
+                onPressed: null,
+                icon: Icon(
+                  Icons.home,
+                  size: 20.0,
+                  color: Colors.black87,
+                ),
+                label: Text('Go to home'),
+                style: OutlinedButton.styleFrom(
+                    primary: Colors.black, onSurface: Colors.pink),
+              ),
+            ],
+          ),
+        ));
   }
 }
